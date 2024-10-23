@@ -1,7 +1,7 @@
 const express = require('express') 
 const morgan = require('morgan')
 const favicon = require('serve-favicon')
-const {success} = require('./helper.js')
+const {success, getUniqueId} = require('./helper.js')
 let pokemons = require('./mock-pokemon');
 const serveFavicon = require('serve-favicon');
 
@@ -26,5 +26,14 @@ app.get('/api/pokemons', (req,res)=>{
     const message = `Il y a bien ${pokemons.length} pokemons dans cette liste`
     res.json(success(message,pokemons))
 })
+
+app.post('/api/pokemons', (req, res) =>{
+    const id = getUniqueId(pokemons)
+    const pokemonCreated = { ...req.body, ...{id: id, created : new Date()}}
+    pokemons.push(pokemonCreated)
+    const message = `Le pokemon ${pokemonCreated.name} a bien été crée` 
+    res.json(success(message,pokemonCreated))
+})
+
 
 app.listen(port,() => console.log(`Application marche sur : http://localhost:${port}`)) 
