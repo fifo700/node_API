@@ -1,14 +1,12 @@
 const express = require('express') 
+const morgan = require('morgan')
 const {success} = require('./helper.js')
 let pokemons = require('./mock-pokemon');
 
 const app = express()
 const port =  3000
 
-app.use ( (req, res, next) => {
-    console.log(`URL : ${req.url}`)
-    next()
-})
+app.use ( morgan('dev'))
 
 
 app.get('/', (req,res)=> res.send('Hello express 2'))
