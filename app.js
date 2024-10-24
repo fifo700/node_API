@@ -31,7 +31,7 @@ sequelize.authenticate()
 
 const Pokemon = PokemonModel(sequelize, DataTypes)
 
-sequelize.sync({force : true})
+sequelize.sync({force : true}) //le force recrée la table a chaque fois alors faudra la bouger
 .then(() => console.log('table créé'))
 
 app
