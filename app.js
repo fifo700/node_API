@@ -17,7 +17,7 @@ app
 
 app.get('/', (req,res)=> res.send('Hello express 2'))
 
-app.get('/api/pokemon/:id', (req,res) => {
+app.get('/api/pokemons/:id', (req,res) => {
     const id = parseInt(req.params.id)
     const pokemon = pokemons.find(pokemon => pokemon.id ===id)
     const message = 'Un pokemon à bien été trouvé'
@@ -37,5 +37,24 @@ app.post('/api/pokemons', (req, res) =>{
     res.json(success(message,pokemonCreated))
 })
 
+    app.put('/api/pokemons/:id', (req, res) =>{
+        const id = parseInt(req.params.id);
+        const pokemonUpdate ={ ...req.body, id: id}
+        pokemons = pokemons.map(pokemon =>{
+            return pokemon.id === id ? pokemonUpdate : pokemon
+        })
+        const message = `Le pokemon ${pokemonUpdate.name} a bien été mis à jour`
+        res.json(success(message, pokemonUpdate))
+    }) 
+
+    app.delete('/api/pokemons/:id', (req, res) =>{
+        const id = parseInt(req.params.id)
+        const pokemonDelete = pokemons.find(pokemons => pokemons.id === id)
+        pokemons = pokemons.filter(pokemon => pokemon.id !== id)
+        const message = `Le pokemon ${pokemonDelete.name} a bien été supprimé`
+        res.json(success(message, pokemonDelete))
+
+    }
+        )
 
 app.listen(port,() => console.log(`Application marche sur : http://localhost:${port}`)) 
