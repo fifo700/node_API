@@ -1,5 +1,4 @@
 const { Pokemon } = require('../db/sequelize')
-const pokemon = require('../models/pokemon')
 const { Op} = require('sequelize')
    
 module.exports = (app) => {
@@ -7,23 +6,25 @@ module.exports = (app) => {
 
     if(req.query.name){
       const name=req.query.name
-      Pokemon.findAll({
+      const limit = parseInt(req.query.limit) || 5
+      Pokemon.findAndCountAll({
         where:{ 
           name:{//name est la propriété du modèle pokemon
             [Op.like]: `%${name}%`//name est le crtitère de recherche
           }
           } ,
-          limit: 5
+          order : ['name'],
+          limit: limit
         })
 
-        .then(pokemons => {
-          const message =`il y a ${pokemons.length} pokémons qui corresponde a la recherche ${name}`
-          res.json({message,data: pokemons})
+        .then(({count, rows}) => {
+          const message =`il y a ${count} pokémons qui corresponde a la recherche ${name}`
+          res.json({message,data: rows})
         })
     
   }
     else{
-      Pokemon.findAll()
+      Pokemon.findAll({order:['name']})
       .then(pokemons => {
         const message = 'La liste des pokémons a bien été récupérée.'
         res.json({ message, data: pokemons })
