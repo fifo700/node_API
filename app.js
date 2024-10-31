@@ -14,7 +14,7 @@ app
     .use( morgan('dev'))
     .use( bodyParser.json() )
 
-sequelize.initDb
+sequelize.initDb()
 
 //ici, les futur points de terminaison
 require('./src/routes/findAllPokemons')(app)
