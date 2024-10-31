@@ -5,12 +5,16 @@ const pokemons = require('./mock-pokemon')
   
 const sequelize = new Sequelize('pokedex', 'root', '', {
   host: 'localhost',
-  dialect: 'mariadb',
+  dialect: 'mysql',
   dialectOptions: {
-    timezone: 'Etc/GMT-2',
+    timezone: 'local',
   },
   logging: false
 })
+
+sequelize.authenticate()
+.then(_=>console.log("gg"))
+.catch(error=>error)
   
 const Pokemon = PokemonModel(sequelize, DataTypes)
   
