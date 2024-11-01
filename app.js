@@ -22,6 +22,7 @@ require('./src/routes/findPokemonByPk')(app)
 require('./src/routes/createPokemons')(app)
 require('./src/routes/updatePokemons')(app)
 require('./src/routes/deletePokemons')(app)
+require('./src/routes/login')(app)
 
 //gestion error 404
 app.use(({res})=>{

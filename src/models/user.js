@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'le nom est deja pris'
         }
       },
-      password: {
+      password: { 
         type: DataTypes.STRING
       }
     })
