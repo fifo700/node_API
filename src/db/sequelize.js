@@ -4,7 +4,7 @@ const PokemonModel = require('../models/pokemon')
 const UserModel = require('../models/user')
 const bcrypt = require('bcryptjs')
 require("dotenv").config();
-
+  
 const pokemons = require('./mock-pokemon')
   
 const sequelize = new Sequelize('pokedex', 'root', '', {
