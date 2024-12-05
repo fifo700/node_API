@@ -32,7 +32,7 @@ const initDb = () => {
         picture: pokemon.picture,
         types: pokemon.types
       })
-      .then(pokemon => console.log(pokemon.toJSON()))
+      //.then(pokemon => console.log(pokemon.toJSON()))
     })
     
     bcrypt.hash('1234', 10)
