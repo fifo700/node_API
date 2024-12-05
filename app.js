@@ -5,7 +5,7 @@ const sequelize = require('./src/db/sequelize')
 const cors = require('cors')
 
 const app = express()
-const port =  process.env.PORT ||  8000
+const port =  process.env.PORT ||  3000
 
 
 
@@ -16,7 +16,10 @@ app
     .use( cors())
 
 sequelize.initDb()
+app.get("/",(req,res) =>{
+    res.send("ça MARCHE !")
 
+})
 //ici, les futur points de terminaison
 require('./src/routes/findAllPokemons')(app)
 require('./src/routes/findPokemonByPk')(app)

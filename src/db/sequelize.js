@@ -3,6 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 const PokemonModel = require('../models/pokemon')
 const UserModel = require('../models/user')
 const bcrypt = require('bcrypt')
+require("dotenv").config();
 
 const pokemons = require('./mock-pokemon')
   
