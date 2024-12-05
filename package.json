@@ -10,7 +10,6 @@
   "author": "Faris",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -18,7 +17,7 @@
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.4.0",
-    "mysql2": "^3.11.3",
+    "mysql2": "^3.11.5",
     "sequelize": "^6.37.5",
     "serve-favicon": "^2.5.0"
   },
